@@ -10,6 +10,11 @@ This page shares some of the interactive visualization one can achieve by using 
 > I have created a public profile using Rpubs and here is the link for the interactive visualization.
 > Click the link for the interactive dashboard webpage [Rpubs-Palani Thanaraj K](http://rpubs.com/thanrajks/463751).
 
+# R-Library Required
+> 1. library(ggplot2)
+> 2. library(plotly)
+> 3. library(flexdashboard) 
+
 # Snapshot of the dashboard
 
 > RPub Webpage
