@@ -1,5 +1,5 @@
 # R-Dashboard
-
+![alt text](https://i.postimg.cc/SKdZ98r7/2000px-R-logo-svg.png)
 
 Data Visualization using R, GGPLOT, Plotly and Flexdashboard
 
