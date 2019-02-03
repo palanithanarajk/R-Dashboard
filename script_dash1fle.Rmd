@@ -1,0 +1,115 @@
+---
+title: "Dashboard-1 by Palani Thanaraj K"
+output: 
+  flexdashboard::flex_dashboard:
+    orientation: columns
+    vertical_layout: scroll
+---
+
+```{r setup, include=FALSE}
+library(flexdashboard)
+library(ggplot2)
+library(plotly)
+library(plyr)
+```
+
+Data frame
+```{r}
+set.seed(955)
+
+dat <- data.frame(cond = rep(c("A", "B"), each=10),
+                  xvar = 1:20 + rnorm(20,sd=3),
+                  yvar = 1:20 + rnorm(20,sd=3))
+
+```
+
+Page 1
+================================
+Column {data-width=350}
+-----------------------------------------------------------------------
+
+### Scatter Plot of Random Data
+
+```{r}
+p <- ggplot(dat, aes(x=xvar, y=yvar)) +
+  geom_point(shape=1)      # Use hollow circles
+ggplotly(p)
+```
+
+Column {data-width=350}
+----------------------
+
+### Scatter Plot of Random Data with Smooth Function
+```{r}
+
+p <- ggplot(dat, aes(x=xvar, y=yvar)) +
+  geom_point(shape=1) +    # Use hollow circles
+  geom_smooth(method=lm)   # Add linear regression line
+ggplotly(p)
+```
+
+Page 2
+===============
+Column {data-width=400}
+-----------------------------------------------------------------------
+
+### Chart C
+
+```{r}
+p <- ggplot(dat, aes(x=xvar, y=yvar)) +
+  geom_point(shape=1) +    # Use hollow circles
+  geom_smooth()            # Add a loess smoothed fit curve with confidence region
+ggplotly(p)
+```
+
+Column {data-width=400}
+-----------------------------------------------------------------------
+### Chart D
+
+```{r}
+n <- 20
+x1 <- rnorm(n); x2 <- rnorm(n)
+y1 <- 2 * x1 + rnorm(n)
+y2 <- 3 * x2 + (2 + rnorm(n))
+A <- as.factor(rep(c(1, 2), each = n))
+df <- data.frame(x = c(x1, x2), y = c(y1, y2), A = A)
+fm <- lm(y ~ x + A, data = df)
+
+p <- ggplot(data = cbind(df, pred = predict(fm)), aes(x = x, y = y, color = A))
+p <- p + geom_point() + geom_line(aes(y = pred))
+ggplotly(p)
+```
+
+Real data
+```{r}
+d1<-read.csv("hcc2.csv")
+head(d1)
+
+```
+
+Page 3
+=====================
+
+-----------------------------------------------------------------------
+### Data Visualization of Hepatocellular Carcinoma dataset (HCC dataset) 
+```{r}
+p1<-ggplot(d1, aes(x=Age,y=Grams_day, col=Class, size=Nodule))+geom_point(aes(alpha=0.4))+facet_grid((factor(d1$Gender)))
+ggplotly(p1)
+```
+
+----------------
+### Bar Chart explaining Alcohol consumption
+```{r}
+p2<-ggplot(d1,aes(x=Gender, y=Alcohol, fill=Packs_year))+geom_bar(stat = 'identity')
+ggplotly(p2)
+```
+
+----------------
+### Density Plot of Creatinine levels
+```{r}
+p3<-ggplot(d1,aes(Creatinine, col=Gender, fill=Gender, alpha=0.4))+geom_density(stat="density")
+ggplotly(p3)
+
+```
+
+
