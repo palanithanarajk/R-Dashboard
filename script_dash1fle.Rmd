@@ -32,7 +32,7 @@ Column {data-width=350}
 
 ```{r}
 p <- ggplot(dat, aes(x=xvar, y=yvar)) +
-  geom_point(shape=1)      # Use hollow circles
+  geom_point(shape=1)      # function for Scatter plot
 ggplotly(p)
 ```
 
@@ -43,7 +43,7 @@ Column {data-width=350}
 ```{r}
 
 p <- ggplot(dat, aes(x=xvar, y=yvar)) +
-  geom_point(shape=1) +    # Use hollow circles
+  geom_point(shape=1) +    
   geom_smooth(method=lm)   # Add linear regression line
 ggplotly(p)
 ```
@@ -57,7 +57,7 @@ Column {data-width=400}
 
 ```{r}
 p <- ggplot(dat, aes(x=xvar, y=yvar)) +
-  geom_point(shape=1) +    # Use hollow circles
+  geom_point(shape=1) +   
   geom_smooth()            # Add a loess smoothed fit curve with confidence region
 ggplotly(p)
 ```
@@ -94,7 +94,7 @@ Page 3
 ### Data Visualization of Hepatocellular Carcinoma dataset (HCC dataset) 
 ```{r}
 p1<-ggplot(d1, aes(x=Age,y=Grams_day, col=Class, size=Nodule))+geom_point(aes(alpha=0.4))+facet_grid((factor(d1$Gender)))
-ggplotly(p1)
+ggplotly(p1)  # Function for interactive plot
 ```
 
 ----------------
